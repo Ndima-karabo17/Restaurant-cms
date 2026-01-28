@@ -1,0 +1,91 @@
+:root {
+  --bite-green: #064e3b;
+  --bite-yellow: #facc15;
+  --bg-color: #f3f4f6;
+}
+
+.dashboard-wrapper {
+  display: grid;
+  grid-template-columns: 260px 1fr; /* Sidebar width and the rest */
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  background: white;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar-item {
+  padding: 12px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+}
+
+.sidebar-item.active {
+  background: var(--bite-yellow);
+  color: white;
+  font-weight: bold;
+}
+
+/* Main Layout Grid */
+.main-content {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Left section wider than right */
+  gap: 30px;
+}
+
+.top-header {
+  grid-column: 1 / span 2; /* Header stretches across both columns */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Stats Cards */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.stat-card.green {
+  background: var(--bite-green);
+  color: white;
+}
+
+/* Order List Table */
+.order-list-box {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+/* Action Buttons */
+.btn-primary {
+  background: var(--bite-yellow);
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
