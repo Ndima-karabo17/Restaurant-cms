@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, CreditCard, MapPin, Phone, Mail, Loader2 } from 'lucide-react';
+import { ShieldCheck, CreditCard, MapPin, Phone, Mail, Loader2, User as UserIcon } from 'lucide-react'; // Added UserIcon
 import '../../index.css';
 import type { User } from '../../types/users';
 
@@ -37,7 +37,10 @@ function UserProfile() {
       <header className="flex justify-between items-center mb-5 border-b-2 border-orange-300 pb-7">
         <div>
           <h1 className="text-3xl text-black uppercase tracking-tighter font-black italic">User Management</h1>
-          <p className="text-gray-500 font-bold text-xs tracking-widest uppercase mt-1">Registry / Database View</p>
+          <div className="flex items-center gap-2 mt-1">
+             <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+             <p className="text-gray-500 font-bold text-xs tracking-widest uppercase">Live Registry: {users.length} Users</p>
+          </div>
         </div>
         <div className="bg-green-400 text-white p-3 rounded-xl shadow-lg shadow-green-100">
           <ShieldCheck size={24} />
@@ -48,7 +51,6 @@ function UserProfile() {
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-orange-400 text-white uppercase text-[10px] tracking-[0.2em] font-black">
-              {/* ID Column Removed */}
               <th className="px-6 py-4">User</th>
               <th className="px-6 py-4">Contact & Email</th>
               <th className="px-6 py-4">Address</th>
@@ -59,13 +61,16 @@ function UserProfile() {
           <tbody className="divide-y divide-gray-100">
             {users.map((user) => (
               <tr key={user.id} className="hover:bg-orange-50/50 transition-colors">
-               
                 <td className="px-6 py-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center text-white shrink-0 font-bold">
-                      {user.name ? user.name.charAt(0) : ''}
+                    {/* Updated Profile Icon Section */}
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 shrink-0 border-2 border-gray-200 shadow-inner">
+                      <UserIcon size={20} />
                     </div>
-                    <span className="font-black text-black uppercase text-sm italic">{user.name || 'Anonymous'}</span>
+                    <div className="flex flex-col">
+                        <span className="font-black text-black uppercase text-sm italic leading-none">{user.name || 'Unknown User'}</span>
+                        <span className="text-[9px] text-gray-400 font-bold uppercase mt-1 tracking-tighter">Member ID: #{user.id}</span>
+                    </div>
                   </div>
                 </td>
                 <td className="px-6 py-5">
