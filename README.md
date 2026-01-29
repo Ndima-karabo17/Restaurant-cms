@@ -96,3 +96,15 @@ npm install
 
 npm run dev
 
+
+How the Restaurant Manager looks like
+-
+
+<img width="1900" height="800" alt="Screenshot 2026-01-29 222052" src="https://github.com/user-attachments/assets/7cbff14f-5ea0-4d0e-a17f-b710e35b0869" />
+
+<img width="1900" height="800" alt="Screenshot 2026-01-29 222036" src="https://github.com/user-attachments/assets/912d4f81-7ca1-4b51-90c1-1a2a93cacb4c" />
+
+
+<img width="1900" height="800" alt="Screenshot 2026-01-29 222013" src="https://github.com/user-attachments/assets/967a3901-aa93-4abd-82df-5285abf00535" />
+<img width="1900" height="800" alt="Screenshot 2026-01-29 221957" src="https://github.com/user-attachments/assets/3434ad72-26ab-4c66-afc7-2c1b5cc18500" />
+
