@@ -36,3 +36,16 @@ Tech Stack
     <td>pgAdmin4</td
   </tr>
 </table>
+
+Project Structure
+-
+
+├── restaurant-cms/          # Frontend (React)
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── MenuLayout/  # Modular Menu Logic
+│   │   └── types/           # Shared TS Interfaces
+│   └── ...
+└── server/                  # Backend (Node.js/TS)
+    ├── server.ts            # API Endpoints
+    └── package.json         # Backend dependencies
