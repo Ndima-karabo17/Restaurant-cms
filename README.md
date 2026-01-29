@@ -84,3 +84,15 @@ Setup & Installation
    2. Install dependencies: npm install
    3. Start the app: npm run dev
 
+
+How to run project
+-
+
+cd server
+
+npm install
+
+# Configure your .env with DATABASE_URL
+
+npm run dev
+
