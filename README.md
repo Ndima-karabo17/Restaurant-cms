@@ -12,7 +12,9 @@ Features
   - Update: Inline editing of existing menu items
   - Delete: Permanent removal of items from the database
 - Restuarant Info: Manages business details like name, address, and contact info
-- Type Safety: Strict TypeScript implementation on both Frontend and Backend.  
+- Type Safety: Strict TypeScript implementation on both Frontend and Backend.
+- Live Analytics: Real-time stat cards fetching data directly from PostgreSQL.
+- 
 
 
 Tech Stack
@@ -81,3 +83,4 @@ Setup & Installation
    1. Navigate to the restaurant-cms folder
    2. Install dependencies: npm install
    3. Start the app: npm run dev
+
