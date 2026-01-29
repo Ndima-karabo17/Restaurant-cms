@@ -41,11 +41,43 @@ Project Structure
 -
 
 ├── restaurant-cms/          # Frontend (React)
+
 │   ├── src/
+
 │   │   ├── components/
+
 │   │   │   └── MenuLayout/  # Modular Menu Logic
+
 │   │   └── types/           # Shared TS Interfaces
 │   └── ...
 └── server/                  # Backend (Node.js/TS)
+
     ├── server.ts            # API Endpoints
+    
     └── package.json         # Backend dependencies
+
+Setup & Installation
+-
+
+1. Database Setup(pgAdmin4)
+   1. Open pgAdmin4 and create a database named restaurant_db
+   2. Run the following SQL script to create the table
+
+      CREATE TABLE menu_items (
+      
+    id SERIAL PRIMARY KEY,
+   
+    name VARCHAR(255) NOT NULL,
+   
+    category VARCHAR(100),
+   
+    price DECIMAL(10, 2),
+   
+    description TEXT
+);
+
+
+2. Frontend Configuration
+   1. Navigate to the restaurant-cms folder
+   2. Install dependencies: npm install
+   3. Start the app: npm run dev
