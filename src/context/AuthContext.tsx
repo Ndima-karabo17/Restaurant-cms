@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { apiClient } from '../api/client';
 import type { User, AuthContextType } from '../types/Authtypes';

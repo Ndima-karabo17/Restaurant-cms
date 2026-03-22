@@ -1,4 +1,3 @@
-import React from 'react';
 import { Utensils, Edit3, Trash2, Loader2 } from 'lucide-react';
 import type { MenuItem } from '../../types/menu';
 

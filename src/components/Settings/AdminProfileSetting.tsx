@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Settings, Lock, Bell, Eye, EyeOff, Save, ShieldAlert } from 'lucide-react';
 import '../../index.css';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ShieldCheck, CreditCard, MapPin, Phone, Mail, Loader2, User as UserIcon } from 'lucide-react';
 import type { User } from '../../types/users';
 
