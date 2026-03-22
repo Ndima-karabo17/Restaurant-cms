@@ -1,25 +1,23 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MenuForm from './MenuForm';
-import MenuTable from './MenuTable';
+import MenuTable from './MenuTabs'; // File is named MenuTabs.tsx but exports MenuTable
 import { menuService } from './menuService';
 import type { MenuItem, MenuFormState } from '../../types/menu';
+
+const EMPTY_FORM: MenuFormState = {
+  name: '',
+  price: '',
+  description: '',
+  category: 'Main',
+  image_url: ''
+};
 
 export default function CreateMenu() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState<number | string | null>(null);
-  
-  // Updated initial state to include image_url
-  const initialFormState: MenuFormState = { 
-    name: '', 
-    price: '', 
-    description: '', 
-    category: 'Main',
-    image_url: '' 
-  };
-
-  const [form, setForm] = useState<MenuFormState>(initialFormState);
+  const [form, setForm] = useState<MenuFormState>(EMPTY_FORM);
 
   const loadItems = useCallback(async () => {
     setLoading(true);
@@ -43,7 +41,7 @@ export default function CreateMenu() {
       } else {
         await menuService.create(form);
       }
-      setForm(initialFormState);
+      setForm(EMPTY_FORM);
       setIsEditing(false);
       setEditId(null);
       loadItems();
@@ -67,11 +65,10 @@ export default function CreateMenu() {
   const handleEdit = (item: MenuItem) => {
     setIsEditing(true);
     setEditId(item.id);
-    // Updated to populate image_url in the form
-    setForm({ 
-      name: item.name, 
-      price: item.price.toString(), 
-      description: item.description, 
+    setForm({
+      name: item.name,
+      price: item.price.toString(),
+      description: item.description,
       category: item.category,
       image_url: item.image_url || ''
     });
@@ -80,7 +77,7 @@ export default function CreateMenu() {
   const handleCancel = () => {
     setIsEditing(false);
     setEditId(null);
-    setForm(initialFormState);
+    setForm(EMPTY_FORM);
   };
 
   return (
@@ -92,21 +89,21 @@ export default function CreateMenu() {
 
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-4">
-          <MenuForm 
-            form={form} 
-            setForm={setForm} 
-            onSubmit={handleSubmit} 
-            isEditing={isEditing} 
-            onCancel={handleCancel} 
+          <MenuForm
+            form={form}
+            setForm={setForm}
+            onSubmit={handleSubmit}
+            isEditing={isEditing}
+            onCancel={handleCancel}
           />
         </div>
         <div className="col-span-8">
-          <MenuTable 
-            items={items} 
-            loading={loading} 
-            onEdit={handleEdit} 
-            onDelete={handleDelete} 
-            editId={editId} 
+          <MenuTable
+            items={items}
+            loading={loading}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            editId={editId}
           />
         </div>
       </div>

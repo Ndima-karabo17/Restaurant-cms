@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, CreditCard, MapPin, Phone, Mail, Loader2, User as UserIcon } from 'lucide-react'; // Added UserIcon
-import '../../index.css';
+import { ShieldCheck, CreditCard, MapPin, Phone, Mail, Loader2, User as UserIcon } from 'lucide-react';
 import type { User } from '../../types/users';
 
 function UserProfile() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/users');
+        const token = localStorage.getItem('cms_token');
+        const response = await fetch('https://restaurant-app-reactnative-backend.onrender.com/api/users', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+
         const data = await response.json();
         setUsers(data);
       } catch (error) {
         console.error("Error fetching users:", error);
+        setError('Could not load users. Make sure the backend is running.');
       } finally {
         setLoading(false);
       }
@@ -32,14 +44,22 @@ function UserProfile() {
     );
   }
 
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen gap-4">
+        <p className="text-red-500 font-bold">{error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 bg-white min-h-screen">
       <header className="flex justify-between items-center mb-5 border-b-2 border-orange-300 pb-7">
         <div>
           <h1 className="text-3xl text-black uppercase tracking-tighter font-black italic">User Management</h1>
           <div className="flex items-center gap-2 mt-1">
-             <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-             <p className="text-gray-500 font-bold text-xs tracking-widest uppercase">Live Registry: {users.length} Users</p>
+            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+            <p className="text-gray-500 font-bold text-xs tracking-widest uppercase">Live Registry: {users.length} Users</p>
           </div>
         </div>
         <div className="bg-green-400 text-white p-3 rounded-xl shadow-lg shadow-green-100">
@@ -63,13 +83,12 @@ function UserProfile() {
               <tr key={user.id} className="hover:bg-orange-50/50 transition-colors">
                 <td className="px-6 py-5">
                   <div className="flex items-center gap-3">
-                    {/* Updated Profile Icon Section */}
                     <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 shrink-0 border-2 border-gray-200 shadow-inner">
                       <UserIcon size={20} />
                     </div>
                     <div className="flex flex-col">
-                        <span className="font-black text-black uppercase text-sm italic leading-none">{user.name || 'Unknown User'}</span>
-                        <span className="text-[9px] text-gray-400 font-bold uppercase mt-1 tracking-tighter">Member ID: #{user.id}</span>
+                      <span className="font-black text-black uppercase text-sm italic leading-none">{user.name || 'Unknown User'}</span>
+                      <span className="text-[9px] text-gray-400 font-bold uppercase mt-1 tracking-tighter">Member ID: #{user.id}</span>
                     </div>
                   </div>
                 </td>
@@ -103,7 +122,7 @@ function UserProfile() {
             ))}
           </tbody>
         </table>
-        
+
         {users.length === 0 && (
           <div className="p-20 text-center bg-gray-50">
             <p className="text-gray-400 font-black uppercase text-sm italic">No users found in the registry.</p>

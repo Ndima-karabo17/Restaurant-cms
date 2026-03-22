@@ -1,6 +1,6 @@
 import type { MenuItem, MenuFormState } from '../../types/menu';
 
-const API_URL = 'http://localhost:5000/api/menu';
+const API_URL = 'https://restaurant-app-reactnative-backend.onrender.com/api/products';
 
 export const menuService = {
   async getAll(): Promise<MenuItem[]> {
